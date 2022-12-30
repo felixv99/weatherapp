@@ -1,7 +1,7 @@
 
 # Weather App
 
-App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, for easier access to most commonly searched cities weather.
+App that shows information about current weather for any city. When signed in, the app allows saving users favorite cities, giving easier way to access favorite cities.
 
 
 ![alt text](https://github.com/felixv99/weatherapp/blob/master/preview.png "Weather app preview")
