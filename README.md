@@ -4,7 +4,7 @@
 App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, for easier access to most commonly searched cities weather.
 
 
-![alt text](https://github.com/felixv99/weatherapp/preview.png "Weather app preview")
+![alt text](https://github.com/felixv99/weatherapp/blob/master/preview.png "Weather app preview")
 ## Installation
 
 Use "npm install" to install node_modules, and run both frontend and backend on separate instances with "npm start"
