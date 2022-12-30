@@ -1,0 +1,19 @@
+KNOWN BUGS/ TO DO:
+
+- Min and Max temperatures show the same temperature if there is only one measurement per display
+
+- Container sizes don't perform well with huge monitors
+
+- When clicking suggestion from the search bar the id of the city will be shown in the search bar
+
+- Typing in "London" for example will show 4 different suggestions for London United States, without clear 
+indication how they differ from each other (since coordinates aren't shown), possibly add state names based on coordinates
+
+- Add more visual changes to each weather condition (for example background with gradient according to the colors of weather condition)
+
+- User's need more guidance in using the app
+    ->"Search for cities" in the search bar
+
+-Sunrise and sunset times are in UTC+02:00 instead of time based on location
+
+- Prevent registration with alerady existing usernames
