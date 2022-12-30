@@ -1,13 +1,20 @@
 
 # Weather App
 
-App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, for easier access to most commonly searched cities weather.
+App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, and easy access to them via menu
 
 
 ![alt text](https://github.com/felixv99/weatherapp/blob/master/preview.png "Weather app preview")
 ## Installation
 
 Use "npm install" to install node_modules, and run both frontend and backend on separate instances with "npm start"
+In order to be able to run the application properly, mongodb connection string and OpenWeatherMap API key is needed.
+
+### *Cities data to mongodb*
+The combination of cities and countries data can be done from ./weatherapp-backend/tools/citycountrytool.js
+or just by using the cities.json file from the same folder
+
+Easiest way to upload  json data to mongodb is through [MongoDB Command Line Database Tools](https://www.mongodb.com/try/download/database-tools) with mongoimport
 
 
 
