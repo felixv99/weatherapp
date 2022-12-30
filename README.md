@@ -8,6 +8,13 @@ App that shows information about current weather for any city. When signed in, t
 ## Installation
 
 Use "npm install" to install node_modules, and run both frontend and backend on separate instances with "npm start"
+In order to be able to run the application properly, mongodb connection string and OpenWeatherMap API key is needed.
+
+### *Cities data to mongodb*
+The combination of cities and countries data can be done from ./weatherapp-backend/tools/citycountrytool.js
+or just by using the cities.json file from the same folder
+
+Easiest way to upload  json data to mongodb is trough [MongoDB Command Line Database Tools](https://www.mongodb.com/try/download/database-tools) with mongoimport
 
 
 
