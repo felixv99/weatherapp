@@ -1,5 +1,5 @@
 
-# Weather App
+# Weather App (W.I.P)
 
 App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, and easy access to them via menu
 
