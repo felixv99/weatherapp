@@ -14,7 +14,7 @@ In order to be able to run the application properly, mongodb connection string a
 The combination of cities and countries data can be done from ./weatherapp-backend/tools/citycountrytool.js
 or just by using the cities.json file from the same folder
 
-Easiest way to upload  json data to mongodb is trough [MongoDB Command Line Database Tools](https://www.mongodb.com/try/download/database-tools) with mongoimport
+Easiest way to upload  json data to mongodb is through [MongoDB Command Line Database Tools](https://www.mongodb.com/try/download/database-tools) with mongoimport
 
 
 
