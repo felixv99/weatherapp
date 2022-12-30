@@ -12,7 +12,9 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cities.json": "^1.1.15",
     "cors": "^2.8.5",
+    "countries-list": "^2.6.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
