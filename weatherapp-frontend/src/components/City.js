@@ -69,7 +69,6 @@ const Filter = ({value, handler}) => {
       <>
         <div className="searchsug" onClick={() => {
           setCityFilter(city.name + " " + city.country + " " + city.id)
-          {/*setCities([city]) TÄÄ EI TOIMI */}
           }}>
           <p className="p-suggestion">{city.name}</p><p className="p-suggestion-light"> {city.country} </p>
         </div>
@@ -183,7 +182,7 @@ const Filter = ({value, handler}) => {
           <>
           <div id="menu-container">
             <div id="x-button" onClick={(menuHandler)}><div className="x1"></div><div className="x2"></div></div>
-            <div style={{width: "100%", borderBottom: "1px solid rgba(255,255,255,0.4", textAlign: "center", paddingBottom: "2px", marginBottom: "10px"}}>Welcome {user.name}!</div>
+            <div style={{width: "100%", borderBottom: "1px solid rgba(255,255,255,0.4", textAlign: "center", paddingBottom: "2px", marginBottom: "10px"}}>Welcome {user.username}!</div>
             <div style={{width: "100%", textAlign: "center", paddingBottom: "2px", marginBottom: "3px"}}>Your favorites:</div>
             <FavoriteCities cities={favorites} setCityFilter={setCityFilter}/>
             <button style={{marginTop: "20px"}} onClick={() => logOut()}>logout</button>
