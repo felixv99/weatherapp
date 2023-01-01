@@ -26,8 +26,6 @@ Easiest way to upload  json data to mongodb is through [MongoDB Command Line Dat
 ### *Front-end:*
 React
 
-OpenWeatherMap Current Weather Data API
-
 ### *Back-end:*
 Node.js
 
@@ -42,6 +40,8 @@ Cities of the world [https://github.com/lutangar/cities.json](https://github.com
 Countries data [https://github.com/annexare/Countries](https://github.com/annexare/Countries)
 
 Cities of the world and countries data used in combination in mongodb
+
+Real-time weather information is coming for Open Weather Map API
 
 ## License
 
