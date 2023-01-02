@@ -1,8 +1,8 @@
 
 # Weather App (W.I.P)
 
-App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, and easy access to them via menu
-*This app is still work-in-progress and I'm planning to finish it during the next couple of weeks*
+App that shows information about current weather for any city. When signed in, the app allows saving favorite cities, and easy access to them via menu.
+*This app is still work-in-progress and I'm planning to finish it during the next couple of weeks.*
 
 
 ![alt text](https://github.com/felixv99/weatherapp/blob/master/preview.png "Weather app preview")
