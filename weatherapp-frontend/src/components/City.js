@@ -42,11 +42,11 @@ const Filter = ({value, handler}) => {
           <div className="info-tab">
             <div className="tab-part">
               <img className="tab-part-img" src={require(`../assets/images/WeatherIcon - 1-24.png`)} alt="sunrise" />
-              <p className="p-tab">{new Date(weather.sys.sunrise*1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
+              <p className="p-tab">{new Date((weather.sys.sunrise-(60*60*2)+weather.timezone)*1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
             </div>
             <div className="tab-part"> 
               <img className="tab-part-img" src={require(`../assets/images/WeatherIcon - 1-23.png`)} alt="sunset" />
-              <p className="p-tab">{new Date(weather.sys.sunset*1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
+              <p className="p-tab">{new Date((weather.sys.sunset-(60*60*2)+weather.timezone)*1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
             </div>
           </div>
           <div className="info-tab">

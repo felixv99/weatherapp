@@ -37,7 +37,7 @@ const App = () => {
       setCities(cities)
     ) 
 
-  }, [cityFilter])
+  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedWeatherappUser')
@@ -51,11 +51,15 @@ const App = () => {
   }, [])
 
   useEffect(() => {
+    /*
     axios
     .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
       .then(response => {
         setWeather(response.data)
       })
+      */
+     cityService.getWeather(lat,lon).then(data => {
+      setWeather(data)})
   }, [lat,lon])
   //TO DO , Add country names in the cities object or search the countrycode from the countries_data list
   //Tähän kaupunki lisäks??
@@ -149,7 +153,6 @@ const App = () => {
   }
 
   const removeFavorite = async () => {
-    console.log("POISTHA")
     
     try {
       const returnedCities = await favoritesService.deleteFavorite(user.username, citiesToShow[0].id, favorites)
