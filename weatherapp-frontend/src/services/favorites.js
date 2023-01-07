@@ -21,11 +21,10 @@ const addFavorite = async newObject => {
     return request.then(response => response.data)
   }
 
-  const deleteFavorite = async (username, cityId, favorites) => {
+  const deleteFavorite = async (username, cityId) => {
     const config = {
         headers: { Authorization: token },
       }
-    /*const new_favorites = favorites.filter( city => {return city.id !== cityId})*/
       const response = await axios.put(`${baseUrl}/${username}/${cityId}`,{}, config)
       return response.data
   }

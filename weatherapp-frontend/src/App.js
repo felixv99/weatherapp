@@ -1,17 +1,13 @@
 import { useState, useEffect} from 'react'
-import axios from 'axios'
 import './App.css';
 import cityService from './services/cities'
 import favoritesService from './services/favorites'
 import loginService from './services/login'
-//import cities_data from 'cities.json';
-//import {countries as country_names} from 'countries-list'
 import {Filter, Cities, Suggestion, Menu} from './components/City'
-//const cities_data = require('./data/cities.json')
 
 const App = () => {
   const [cities, setCities] = useState([]);
-  const [cityFilter, setCityFilter] = useState('');
+  const [cityFilter, setCityFilter] = useState({name:''});
   const [weather, setWeather] = useState({});
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
@@ -20,17 +16,7 @@ const App = () => {
   const [password, setPassword] = useState('');
   const [showMenu, setShowMenu] = useState('closed')
   const [favorites, setFavorites] = useState([])
-  //const api_key = process.env.REACT_APP_API_KEY
-  //console.log(weather)
-  /*
-  useEffect(() => {
-    axios
-      .get('https://restcountries.com/v3.1/all')
-      .then(response => {
-        setCities(response.data)
-      })
-  }, [])
-*/
+
 
   useEffect(() => {
     cityService.getAll().then(cities =>
@@ -45,28 +31,19 @@ const App = () => {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       favoritesService.setToken(user.token)
-      //console.log(user)
       favoritesService.getFavorites(user.username).then(favcities => setFavorites(favcities))
     }
   }, [])
 
   useEffect(() => {
-    /*
-    axios
-    .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
-      .then(response => {
-        setWeather(response.data)
-      })
-      */
      cityService.getWeather(lat,lon).then(data => {
       setWeather(data)})
   }, [lat,lon])
-  //TO DO , Add country names in the cities object or search the countrycode from the countries_data list
-  //Tähän kaupunki lisäks??
-  //const citiesToShow = cities.filter(city => city.name.toLowerCase().includes(cityFilter.toLowerCase()))
-  //const citiesToShow = cities.filter(city => (city.name + " " + country_names[city.country].name).toLowerCase().includes(cityFilter.toLowerCase()))
-  //const citiesToShow = cities.filter(city => (city.name + " " + country_names[city.country].name).toLowerCase().startsWith(cityFilter.toLowerCase()))
-    const citiesToShow = cities.filter(city => (city.name + " " + city.country + " " + city.id).toLowerCase().startsWith(cityFilter.toLowerCase()))
+
+  let citiesToShow = cities.filter(city => (city.name + " " + city.country).toLowerCase().startsWith(cityFilter.name.toLowerCase()))
+  if(cityFilter.hasOwnProperty('id')) {
+    citiesToShow = cities.filter(city => city.id === cityFilter.id)
+  }
 
   useEffect(() => {
     if (citiesToShow.length === 1) {
@@ -76,7 +53,7 @@ const App = () => {
   }, [citiesToShow])
 
   const handleFilterChange = (event) => {
-    setCityFilter(event.target.value)
+    setCityFilter({name: event.target.value})
   }
 
   const handleLogin = async (event) => {
@@ -95,12 +72,11 @@ const App = () => {
       setPassword('')
       setShowMenu('auth-open')
       favoritesService.getFavorites(user.username).then(favcities => setFavorites(favcities))
-      //favoritesService.getFavorites(user.username).then(favcities => setFavorites(favcities))
     } catch (exception) {
       /*errormsg('wrong username or password')*/
       console.log(exception)
     }
-    console.log('logging in with', username, password)
+    console.log('logging in as', username)
   }
 
   const handleSignUp = async (event) => {
@@ -113,9 +89,7 @@ const App = () => {
       setUsername('')
       setPassword('')
       setShowMenu('open')
-      //favoritesService.getFavorites(user.username).then(favcities => setFavorites(favcities))
     } catch (exception) {
-      /*errormsg('wrong username or password')*/
       console.log(exception)
     }
   }
@@ -141,12 +115,10 @@ const App = () => {
 
   const addFavorite = async (event) => {
     event.preventDefault()
-    //console.log({id: citiesToShow[0].id})
       try {
-      const favObject = {id: citiesToShow[0].id}
-      const returnedUser = await favoritesService.addFavorite(favObject)
-      console.log(returnedUser)
-      setFavorites(returnedUser.cities)
+        const favObject = {id: citiesToShow[0].id}
+        const returnedUser = await favoritesService.addFavorite(favObject)
+        setFavorites(returnedUser.cities)
       } catch (exception) {
         console.log(exception.message)
       }
@@ -180,7 +152,6 @@ const App = () => {
               } else {
                 return (
                   <>
-                  {/*<div id="main-box" style={{content: "url('./assets/images/weather-icons/WeatherIcon - 2-10d.png')"}}></div>*/}
                   <div id="header">
                     <img id="main-box" src={require(`./assets/images/weather-icons/WeatherIcon - 2-${weather.weather[0].icon}.png`)} alt="weather"/>
                     <div id="header-text">
@@ -205,12 +176,12 @@ const App = () => {
             })()
         }
         <div id="info-container">
-          <Cities cities={citiesToShow} setCityFilter={setCityFilter} weather={weather} setLat={setLat} setLon={setLon} /*countries={country_names}*//>
+          <Cities cities={citiesToShow} setCityFilter={setCityFilter} weather={weather} setLat={setLat} setLon={setLon}/>
         </div>
       </div>
       <div id="right-container">
-          <Filter value={cityFilter} handler={handleFilterChange} />
-          <Suggestion cities={citiesToShow} setCityFilter={setCityFilter} /*countries={country_names}*/ setCities={setCities} />
+          <Filter value={cityFilter.name} handler={handleFilterChange} />
+          <Suggestion cities={citiesToShow} setCityFilter={setCityFilter} setCities={setCities} />
       </div> 
 
     </div>

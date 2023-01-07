@@ -1,23 +1,19 @@
 import '../App.css'
 
+// This component handles the city search query
 const Filter = ({value, handler}) => {
-
     return (
       <>
         <div id="searchbar">
-        <input id="searchbar-input" value={value} onChange={handler} autoComplete="off"/>
-        {/*}
-        { value === "" ?
-        <input id="searchbar-input" value={"Search for a city"} onChange={handler} autoComplete="off" onFocus={(e) => e.target.value = ""}/> :
-        <input id="searchbar-input" value={value} onChange={handler} autoComplete="off"/> }
-        */}
+        <input id="searchbar-input" value={value} onChange={handler} autoComplete="off" />
         <img id="searchbar-icon" src={require(`../assets/images/search-icon.png`)} alt="search" />
         </div>
         </>
     )
   }
-  
-  const CityInfo = ({city, weather/*, country*/}) => {
+
+// This component is in charge of displaying the specific city's weather data
+  const CityInfo = ({city, weather}) => {
     const w_desc = weather.weather[0].description
     const w_desc_fix = w_desc.charAt(0).toUpperCase() + w_desc.slice(1).toLowerCase();
     return (
@@ -64,11 +60,12 @@ const Filter = ({value, handler}) => {
     )
   }
   
-  const City = ({city, setCityFilter/*, country*/, setCities}) => {
+//This component handles the drop-down suggestions when searching for a city
+  const City = ({city, setCityFilter}) => {
     return (
       <>
         <div className="searchsug" onClick={() => {
-          setCityFilter(city.name + " " + city.country + " " + city.id)
+          setCityFilter({name: city.name, country: city.country, id: city.id})
           }}>
           <p className="p-suggestion">{city.name}</p><p className="p-suggestion-light"> {city.country} </p>
         </div>
@@ -76,6 +73,7 @@ const Filter = ({value, handler}) => {
     )
   }
   
+//This component is a parent component for the drop-down suggestions, handling logic such as how many suggestions are showed
   const Suggestion = ({cities,setCityFilter/*, countries*/,setCities}) => {
     if (cities.length > 20 || cities.length === 1 ) {
       return (
@@ -85,20 +83,20 @@ const Filter = ({value, handler}) => {
     } else if (cities.length <= 20 && cities.length > 1) {
     return (
       <div id="searchsuggestions">
-        {cities.map((city,index) =>
-            <City key={city.id} city={city} setCityFilter={setCityFilter} /*country={countries[city.country].name}*/ setCities={setCities} />
+        {cities.map(city =>
+            <City key={city.id} city={city} setCityFilter={setCityFilter} setCities={setCities} />
         )}
         </div>
     )
     }
   }
 
+//This component handles individual favourite city buttons
   const FavoriteCity = ({city, setCityFilter}) => {
-    //console.log(city.id)
     return (
         <>
-        <div className="login-inputs" style={{height: "auto", width: "100%", minWidth: "30px",padding: "0px", display:"flex", flexDirection: "column", gap: "0px"}} onClick={() => {
-          setCityFilter(city.name + " " + city.country + " " + city.id)
+        <div className="login-inputs" style={{height: "auto", width: "100%", minWidth: "30px",padding: "0px", display:"flex", flexDirection: "column", gap: "0px", cursor: "pointer"}} onClick={() => {
+          setCityFilter({name: city.name, country: city.country, id: city.id})
           }}>
           <p className="p-suggestion" style={{ margin:"3px"}}>{city.name}</p><p className="p-suggestion-light" style={{ margin: "3px"}}> {city.country} </p>
         </div>
@@ -106,6 +104,7 @@ const Filter = ({value, handler}) => {
       )
   }
 
+//This component handles the favourite cities buttons, which can be accessed after user has logged in
   const FavoriteCities = ({cities, setCityFilter}) => {
     if (cities.length === 0 ) {
         return (
@@ -124,17 +123,25 @@ const Filter = ({value, handler}) => {
       }
   }
 
-  const Cities = ({cities, setCityFilter, weather/*, countries*/}) => {
+// This component handles whether the specific city info is shown or not
+  const Cities = ({cities, weather}) => {
      if (cities.length === 1) {
       return (
         <>
-          <CityInfo city={cities[0]} weather={weather} /*country={countries[cities[0].country].name}*/ />
+          <CityInfo city={cities[0]} weather={weather}/>
         </>
       )
-    } 
+    } else {
+      return (
+        <>
+        <h2>Welcome to weather app!</h2>
+        <p className="p-tab">Start by searching for a city from the right upper corner</p>
+        </>
+        )
+    }
   }
 
-
+// This component handles the whole menu logic, from signing up, signing in, and showing favourite cities as well as showing the minimized menu button
   const Menu = ({handleLogin, handleSignUp, setShowMenu, setUsername, setPassword, username, password, showMenu, menuHandler, user, logOut, favorites, setCityFilter}) => {
     if(showMenu === 'closed') {
 
