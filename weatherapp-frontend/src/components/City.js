@@ -164,7 +164,7 @@ const Filter = ({value, handler}) => {
             <input className="login-inputs" type="text" value={username} name="Username" onChange={({target}) => setUsername(target.value)} />
             <p className="p-tab" style={{fontSize: "12px", marginRight: "auto"}}>Password</p>
             <input className="login-inputs" type="password" value={password} name="Password" onChange={({target}) => setPassword(target.value)} />
-            <button type="submit">Sign in</button>
+            <button id="log-button" type="submit">Sign in</button>
           </form>
           <p className="p-tab" style={{fontSize: "12px"}}>Not yet registered? Sign up from <button style={{color: "blue", background: "none", outline: "none", border: "none" }} onClick={() => setShowMenu('reg-open')}>here</button></p>
         </div>
@@ -176,10 +176,10 @@ const Filter = ({value, handler}) => {
           <h3 style={{margin:"0px",padding:"2px", position: "absolute", top: "10px"}}>Sign up</h3>
           <div id="x-button" onClick={(menuHandler)}><div className="x1"></div><div className="x2"></div></div>
           <p className="p-tab" style={{fontSize: "12px", marginRight: "auto"}}>Username</p>
-          <input className="login-inputs" type="text" value={username} name="Username" onChange={({target}) => setUsername(target.value)} />
+          <input className="login-inputs" type="text" style={{border: "2px solid rgba(54, 134, 178, 0.7)"}} value={username} name="Username" onChange={({target}) => setUsername(target.value)} />
           <p className="p-tab" style={{fontSize: "12px", marginRight: "auto"}}>Password</p>
-          <input className="login-inputs" type="password" value={password} name="Password" onChange={({target}) => setPassword(target.value)} />
-          <button type="submit">Sign up</button>
+          <input className="login-inputs" type="password" style={{border: "2px solid rgba(54, 134, 178, 0.7)"}} value={password} name="Password" onChange={({target}) => setPassword(target.value)} />
+          <button id="log-button" style={{border: "2px solid rgba(54, 134, 178, 0.7)"}} type="submit">Sign up</button>
         </form>
         <p className="p-tab" style={{fontSize: "12px"}}>Already registered? Sign in from <button style={{color: "blue", background: "none", outline: "none", border: "none" }} onClick={() => setShowMenu('open')}>here</button></p>
       </div>
@@ -192,7 +192,7 @@ const Filter = ({value, handler}) => {
             <div style={{width: "100%", borderBottom: "1px solid rgba(255,255,255,0.4", textAlign: "center", paddingBottom: "2px", marginBottom: "10px"}}>Welcome {user.username}!</div>
             <div style={{width: "100%", textAlign: "center", paddingBottom: "2px", marginBottom: "3px"}}>Your favorites:</div>
             <FavoriteCities cities={favorites} setCityFilter={setCityFilter}/>
-            <button style={{marginTop: "20px"}} onClick={() => logOut()}>logout</button>
+            <button id="log-button" style={{marginTop: "20px"}} onClick={() => logOut()}>logout</button>
           </div>
           </>
       )

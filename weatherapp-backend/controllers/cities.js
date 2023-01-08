@@ -1,6 +1,7 @@
 const axios = require('axios')
 const citiesRouter = require('express').Router()
 const City = require('../models/city')
+//const cities = require('../tools/cities.json')
 
 citiesRouter.get('/cities', async (request, response) => {
     const cities = await City
