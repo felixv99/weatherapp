@@ -1,14 +1,18 @@
 import '../App.css'
 
 // This component handles the city search query
-const Filter = ({value, handler}) => {
+const Filter = ({value, handler, cities_data}) => {
     return (
-      <>
         <div id="searchbar">
-        <input id="searchbar-input" value={value} onChange={handler} autoComplete="off" />
-        <img id="searchbar-icon" src={require(`../assets/images/search-icon.png`)} alt="search" />
+          { cities_data.length === 0 ?
+            <div id="searchbar-input" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1ch", flexWrap: "nowrap", justifyContent: "center"}}><p className="p-tab" style={{}}>Loading cities</p><div className="loader" style={{}}></div></div>
+            : 
+            <>
+              <input id="searchbar-input" value={value} onChange={handler} autoComplete="off" />
+              <img id="searchbar-icon" src={require(`../assets/images/search-icon.png`)} alt="search" />
+            </>
+          }
         </div>
-        </>
     )
   }
 

@@ -180,7 +180,7 @@ const App = () => {
         </div>
       </div>
       <div id="right-container">
-          <Filter value={cityFilter.name} handler={handleFilterChange} />
+          <Filter value={cityFilter.name} handler={handleFilterChange} cities_data={cities}/>
           <Suggestion cities={citiesToShow} setCityFilter={setCityFilter} setCities={setCities} />
       </div> 
 
